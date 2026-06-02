@@ -1,4 +1,53 @@
+# ── Core (server) ─────────────────────────────
 flask
 flask-cors
-pyflakes
 gunicorn
+pyflakes
+
+# ── Data & Math ───────────────────────────────
+numpy
+pandas
+sympy
+scipy
+
+# ── Web & APIs ────────────────────────────────
+requests
+httpx
+beautifulsoup4
+lxml
+urllib3
+
+# ── Machine Learning (lightweight) ────────────
+scikit-learn
+
+# ── Text & NLP ────────────────────────────────
+nltk
+
+# ── Images ────────────────────────────────────
+pillow
+opencv-python-headless
+
+# ── Charts (non-GUI backend for servers) ──────
+matplotlib
+
+# ── Data formats ──────────────────────────────
+pyyaml
+openpyxl
+xlsxwriter
+
+# ── Dates & Time ──────────────────────────────
+python-dateutil
+pytz
+
+# ── Security & Encoding ──────────────────────
+cryptography
+pyjwt
+bcrypt
+
+# ── Utilities ─────────────────────────────────
+tqdm
+tabulate
+colorama
+rich
+faker
+pydantic
