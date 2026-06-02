@@ -13,6 +13,9 @@ import os
 import tempfile
 import traceback
 
+# Force matplotlib to use non-GUI backend (server has no display)
+os.environ["MPLBACKEND"] = "Agg"
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -37,6 +40,21 @@ def add_cors_headers(response):
 @app.route("/ping", methods=["GET", "OPTIONS"])
 def ping():
     return jsonify({"status": "ok", "message": "PyRunner backend is alive"})
+
+
+# ── List available libraries ──────────────────────────────────────
+@app.route("/libraries", methods=["GET", "OPTIONS"])
+def libraries():
+    """Return a list of installed third-party packages."""
+    result = subprocess.run(
+        [sys.executable, "-m", "pip", "list", "--format=json"],
+        capture_output=True, text=True, timeout=15,
+    )
+    try:
+        pkgs = __import__("json").loads(result.stdout)
+        return jsonify({"libraries": [{"name": p["name"], "version": p["version"]} for p in pkgs]})
+    except Exception:
+        return jsonify({"libraries": []})
 
 
 # ── Run code (with optional stdin input) ──────────────────────────
